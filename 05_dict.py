@@ -43,9 +43,23 @@ text = "Hola, soy Nicolas"
 unique = {c: c.upper() for c in text if c in 'aeiou'}
 
 
+#%%
 
+# Given an array of integer and a target value k, determine the number of 
+# pairs if array elements that have a differente equal to k
 
+# Hashmap solution:
+def pairs(k, arr):
+    arr.sort()
+    d = dict()
+    res = 0
+    for i in range(len(arr)):
+        if arr[i] - k in d:
+            res += 1
+        d[arr[i]] = i
+    print(d)
+    return res
 
-
+print(pairs(2, [4, 5, 10, 12]))
 
 
