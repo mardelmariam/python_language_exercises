@@ -166,3 +166,31 @@ def print_formatted(number):
 if __name__ == '__main__':
     n = int(input())
     print_formatted(n)
+
+#%% Using the string library
+
+import string
+
+def print_rangoli(size):
+    
+    # variables
+    length = 4 * size - 3
+    lower = list(string.ascii_lowercase)
+    strlist = []
+    
+    # top
+    newstr = ''
+    for i in range(size - 1,-1,-1):
+        if i == size - 1:
+            newstr = lower[i]
+        else:
+            newstr = newstr[0: int(len(newstr)/2) + 1]+ '-' + lower[i] + '-' + newstr[int(len(newstr)/2):]
+            
+        strlist.append(newstr)
+        print(newstr.center(length, '-'))
+    
+    # bottom
+    for i in range(len(strlist) - 2, -1, -1):
+        print(strlist[i].center(length, '-'))
+        
+print_rangoli(5)

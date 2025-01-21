@@ -5,53 +5,44 @@ Created on Mon Jan 15 16:43:30 2024
 @author: mdelm
 """
 
-"""
+from itertools import product
 
-
-
-if __name__ == '__main__':
-  run()
-  
-  file = open('./text.txt')
-# print(file.read())
-# print(file.readline())
-# print(file.readline())
-# print(file.readline())
-# print(file.readline())
-
-for line in file:
-  print(line)
-
-file.close()
-
-with open('./text.txt') as file:
-  for line in file:
-    print(line)
-  
-with open('./texs.txt', 'w+') as file:
-  for line in file:
-    print(line)
-  file.write('nuevas cosas en este archivo\n')
-  file.write('otra linea\n')
-  file.write(' mas linea\n')
-  
-  
-import csv
-
-def read_csv(path):
-  with open(path, 'r') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',')
-    header = next(reader)
-    data = []
-    for row in reader:
-      iterable = zip(header, row)
-      country_dict = {key: value for key, value in iterable}
-      data.append(country_dict)
-    return data
-
-if __name__ == '__main__':
-  data = read_csv('./app/data.csv')
-  print(data[0])
-  
+def cartesian_product(x, y):
+    args = [x, y]
+    args_list = list(product(*args))
     
-  """
+    str_args = str(tuple(args_list[0]))
+    for i in range(1, len(args_list)):
+        str_args += f" {str(args_list[i])}"
+    
+    print(str_args)
+        
+    
+if __name__ == '__main__':
+    
+    a = list(map(int, input().rstrip().split()))
+    b = list(map(int, input().rstrip().split()))
+    
+    cartesian_product(a, b)
+
+#%%
+
+from itertools import permutations
+
+def word_variations(word, num):
+    
+    letters = [word[i] for i in range(len(word))]
+    
+    args_list = list(permutations(letters, int(num)))
+    args_list = sorted(args_list)
+    
+    for i in range(len(args_list)):
+        print(''.join(args_list[i]))
+        
+    
+if __name__ == '__main__':
+    
+    a = list(map(str, input().rstrip().split()))
+    
+    word_variations(a[0], a[1])
+
